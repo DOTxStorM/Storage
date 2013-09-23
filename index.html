@@ -1,0 +1,78 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script>
+            function main(){
+                var myString;
+                function person(firstName, lastName){
+                    var m_firstName, m_lastName;
+                    this.m_firstName = firstName;
+                    this.m_lastName = lastName;
+                    
+                    this.getFirstName = getFirstName;
+                    function getFirstName(){
+                        return this.m_firstName;
+                    }
+                    
+                    this.getLastName = getLastName;
+                    function getLastName(){
+                        return this.m_lastName;
+                    }
+                    
+                    this.sayHello = sayHello;
+                    function sayHello(){
+                        var toReturn;
+                        toReturn = "Hello, I am " + this.m_firstName + " and I am a person.";
+                        return toReturn;
+                    }
+                }
+                
+                function student(){
+                    person.call(this);
+                    this.m_year;
+                    this.m_GPA;
+                    this.getYear = getYear;
+                    function getYear(){
+                        return this.m_year;
+                    }
+                    this.getGPA = getGPA;
+                    function getGPA(){
+                        return this.m_GPA;
+                    }
+                }
+                student.prototype = new person();
+                student.prototype.constructor = student;
+                student.prototype.sayHello = function(){
+                    var toReturn;
+                    toReturn = "Hello, I am a student";
+                    return toReturn;
+                };
+                
+                var person1 = new person("Nik","Lee");
+                var student1 = new student();
+                myString = person1.getFirstName();
+                alert(myString);
+                alert(person1.getLastName());
+                alert(person1.sayHello());
+                alert(student1.sayHello());
+                
+                
+                
+             
+                
+                
+            }
+        </script>
+    </head>
+    <!-- As soon as the body is loaded, run the function main() written above -->
+    <body onload="main();">
+        
+        
+    </body>
+</html>
